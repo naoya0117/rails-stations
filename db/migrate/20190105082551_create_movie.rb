@@ -6,9 +6,9 @@ class CreateMovie < ActiveRecord::Migration[6.1]
       t.text "description", comment: "映画の説明文"
       t.string "image_url", limit: 150, comment: "映画のポスター画像が格納されているURL"
       t.boolean "is_showing", null: false, comment: "上映中かどうか"
-
       t.timestamps
 
+      t.index ["name"], name: "index_movies_on_name", unique: true
     end
   end
 end
