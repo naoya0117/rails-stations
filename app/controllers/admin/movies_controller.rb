@@ -16,9 +16,10 @@ class Admin::MoviesController < ApplicationController
             flash.now[:alert] = @movie.errors.full_messages.to_sentence
             render :new, status: :unprocessable_entity
         end
-    rescue => e
-        flash.now[:alert] = e.message
+    rescue ActiveRecord::RecordNotUnique
+        flash.now[:notice] = "Movie name is already taken"
         render :new, status: :bad_request
+    end
 
     def movie_params 
         params.require(:movie).permit(:name, :year, :description, :image_url, :is_showing)
