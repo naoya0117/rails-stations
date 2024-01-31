@@ -9,7 +9,6 @@ class CreateMovie < ActiveRecord::Migration[6.1]
 
       t.timestamps
 
-      t.index ["name"], name: "index_movies_on_name", unique: true
     end
   end
 end
