@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1 class="text-center mb-4">Movies</h1>
+<%= render 'search'%>
 <div class="container">
   <div class="row">
     <% @movies.each do |movie| %>
@@ -12,9 +13,6 @@
             <p class="card-text"><%= movie.description %></p>
             <p class="card-text"><small class="text-muted"><%= movie.year %></small></p>
             <p class="card-text"><%= movie.is_showing ? '上映中' : '上映していません' %></p>
-            <div class="btn-group" role="group" aria-label="Basic example">
-              <%= link_to 'Show', movie, class: "btn btn-primary" %>
-            </div>
           </div>
         </div>
       </div>
