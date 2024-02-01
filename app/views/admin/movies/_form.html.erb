@@ -1,0 +1,52 @@
+<%= form_with(url: '/admin/movies',model: movie, class: 'needs-validation') do |form| %>
+  <% if movie.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger" role="alert">
+      <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+        <% movie.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group row">
+    <%= form.label :name, "タイトル", class: 'form-label col-sm-2 col-form-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="field form-group row">
+    <%= form.label :year, "公開年", class: 'form-label col-sm-2 col-form-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :year, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="field form-group row">
+    <%= form.label :description, "概要", class: 'form-label col-sm-2 col-form-label' %>
+    <div class="col-sm-10">
+      <%= form.text_area :description, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="field form-group row">
+    <%= form.label :image_url, "画像URL", class: 'form-label col-sm-2 col-form-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :image_url, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="field form-group row">
+    <%= form.label :is_showing, "上映中か", class: 'form-label col-sm-2 col-form-label' %>
+    <div class="col-sm-10">
+      <%= form.select :is_showing, options_for_select([["上映中", true], ["上映予定", false]]), {}, {class: 'form-select'} %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
