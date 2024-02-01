@@ -4,6 +4,17 @@ class MoviesController < ApplicationController
   # GET /movies or /movies.json
   def index
     @movies = Movie.all
+    keyword = params[:keyword]
+    is_showing = params[:is_showing]
+
+    if keyword.present?
+      @movies = @movies.where("name LIKE ? OR description LIKE ?", "%#{keyword}%", "%#{keyword}%")
+    end
+
+    unless is_showing.blank?
+      @movies = @movies.where(is_showing: is_showing)
+    end
+
   end
 
   # GET /movies/1 or /movies/1.json
@@ -17,22 +28,6 @@ class MoviesController < ApplicationController
 
   # GET /movies/1/edit
   def edit
-  end
-
-  def search
-    @movies = Movie.all
-    keyword = params[:keyword]
-    is_showing = params[:is_showing]
-
-    if keyword.present?
-      @movies = @movies.where("name LIKE ?", "%#{@keyword}%")
-    end
-
-    unless is_showing.blank?
-      @movies = @movies.where(is_showing: is_showing)
-    end
-
-    render :index
   end
 
   # POST /movies or /movies.json
