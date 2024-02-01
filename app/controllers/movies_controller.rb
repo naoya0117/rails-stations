@@ -19,6 +19,22 @@ class MoviesController < ApplicationController
   def edit
   end
 
+  def search
+    @movies = Movie.all
+    keyword = params[:keyword]
+    is_showing = params[:is_showing]
+
+    if keyword.present?
+      @movies = @movies.where("name LIKE ?", "%#{@keyword}%")
+    end
+
+    unless is_showing.blank?
+      @movies = @movies.where(is_showing: is_showing)
+    end
+
+    render :index
+  end
+
   # POST /movies or /movies.json
   def create
     @movie = Movie.new(movie_params)
