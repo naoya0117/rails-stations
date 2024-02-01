@@ -32,6 +32,14 @@ class Admin::MoviesController < ApplicationController
         end
     end
 
+    def destroy
+        if @movie.destroy
+            redirect_to admin_movies_path, notice: @movie.name + " was deleted.", status: :found
+        else
+            rendar :index, status: :bad_request
+        end
+    end
+
     private
 
         def set_movie

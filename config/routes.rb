@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     root to: redirect('/admin/movies')
-    resources :movies, only: [:index, :new, :create, :edit, :update]
+    resources :movies, only: [:index, :new, :create, :edit, :update, :destroy]
   end
   root to: redirect('/movies')
   resources :movies, only: [:index, :show]

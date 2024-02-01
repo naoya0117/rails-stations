@@ -25,7 +25,10 @@
         <td><a href="<%= movie.image_url %>">画像URL<a></td>
         <td><%= movie.created_at %></td>
         <td><%= movie.updated_at %></td>
-      </tr>
+        <td><%= link_to '編集', edit_admin_movie_path(movie) %></td>
+        <td><%= link_to '削除', admin_movie_path(movie), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
   </tbody>
+  <br>
+  <%= link_to 'New Movie', new_admin_movie_path %>
 </table>
