@@ -1,0 +1,12 @@
+<table>
+    <tr>
+        <th>row</th>
+        <th>col</th>
+    </tr>
+    <% @sheets.each do |sheet| %>
+    <tr>
+        <td><%= sheet.row %></td>
+        <td><%= sheet.column %></td>
+    </tr>
+    <% end %>
+</table>
