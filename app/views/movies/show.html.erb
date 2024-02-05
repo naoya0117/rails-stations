@@ -25,5 +25,14 @@
   <%= @movie.is_showing %>
 </p>
 
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<table>
+  <% @schedules.each do |schedule| %>
+    <tr>
+      <td><%= schedule.start_time %></td>
+      <td><%= schedule.end_time %></td>
+      <td><%= schedule.movie_id %></td>
+    </tr>
+  <% end %>
+</table>
+
 <%= link_to 'Back', movies_path %>
