@@ -4,7 +4,7 @@ class ReservationsController < ApplicationController
       flash[:notice] = "日付または、座席が選択されていません"
       redirect_to movies_path
     end
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find(params[:movie_id])
     @date = params[:date]
     @schedule = Schedule.find(params[:schedule_id])
     @sheet_id = params[:sheet_id]
@@ -16,7 +16,7 @@ class ReservationsController < ApplicationController
 
     if Reservation.exists?(schedule_id: @reservation.schedule_id, sheet_id: @reservation.sheet_id)
       flash[:notice] = "予約済みの座席です"
-      redirect_to reservation_movie_path(id: @reservation.schedule.movie_id, schedule_id: @reservation.schedule_id ,date: @reservation.date,  sheet_id: @reservation.sheet_id) and return
+      redirect_to reservation_movie_path(id: @reservation.schedule.movie_id, schedule_id: @reservation.schedule_id ,date: @reservation.date) and return
     end
 
     if @reservation.save
