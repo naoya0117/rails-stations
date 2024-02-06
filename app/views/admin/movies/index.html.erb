@@ -22,7 +22,7 @@
         <td><%= movie.year %></td>
         <td><%= movie.is_showing ? '上映中' : '上映予定' %></td>
         <td><%= movie.description %></td>
-        <td><a href="<%= movie.image_url %>">画像URL</a></td>
+        <td><img src="<%= movie.image_url %>" alt="movie"/></td>
         <td><%= movie.created_at %></td>
         <td><%= movie.updated_at %></td>
         <td><%= link_to '詳細', admin_movie_path(movie) %></td>
