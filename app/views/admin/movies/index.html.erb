@@ -25,6 +25,10 @@
         <td><img src="<%= movie.image_url %>" alt="movie"/></td>
         <td><%= movie.created_at %></td>
         <td><%= movie.updated_at %></td>
+        <% movie.schedules.each do | schedule| %>
+          <td><%= schedule.start_time %></td>
+          <td><%= schedule.end_time %></td>
+        <% end %>
         <td><%= link_to '詳細', admin_movie_path(movie) %></td>
         <td><%= link_to '予定作成', new_admin_movie_schedule_path(movie) %></td>
         <td><%= link_to '編集', edit_admin_movie_path(movie) %></td>
