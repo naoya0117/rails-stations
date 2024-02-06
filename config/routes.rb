@@ -9,7 +9,15 @@ Rails.application.routes.draw do
 
   root to: redirect('/movies')
 
-  resources :movies, only: [:index, :show]
-  resource :sheets, only: [:index]
+  resources :movies ,only: [:index, :show] do
+    member do
+      get :reservation
+      resources :schedules, only: [] do
+        resources :reservations, only: [:new, :create]
+      end
+    end
+  end
+  resources :sheets, only: [:index]
+  resources :reservations, only: [:create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

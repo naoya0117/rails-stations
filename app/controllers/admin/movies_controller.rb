@@ -40,7 +40,7 @@ class Admin::MoviesController < ApplicationController
         if @movie.destroy
             redirect_to admin_movies_path, notice: @movie.name + " was deleted.", status: :found
         else
-            rendar :index, status: :bad_request
+            render :index, status: :bad_request
         end
     end
 
