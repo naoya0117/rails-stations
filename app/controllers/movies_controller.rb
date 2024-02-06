@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: %i[ show edit update destroy ]
+  before_action :set_movie, only: %i[ show edit update destroy reservation ]
 
   # GET /movies or /movies.json
   def index
@@ -19,6 +19,7 @@ class MoviesController < ApplicationController
 
   # GET /movies/1 or /movies/1.json
   def show
+    @dates = (Date.today..(Date.today + 6)).to_a
     @schedules = @movie.schedules
   end
 
@@ -66,6 +67,18 @@ class MoviesController < ApplicationController
       format.html { redirect_to movies_url, notice: "Movie was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def reservation
+    @date = params[:date]
+    @schedule_id = params[:schedule_id]
+
+    unless @date && @schedule_id
+      redirect_to movie_path(@movie),  notice: '日付または、スケジュールが選択されていません'
+    end
+
+    @sheets = Sheet.all
+
   end
 
   private

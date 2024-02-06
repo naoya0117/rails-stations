@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+<h2>座席予約</h2>
+<table>
+  <% @sheets.each_with_index do |sheet, index| %>
+    <% if index % 5 == 0 %> <!-- Check if index is a multiple of 5 -->
+      <tr> <!-- Close the current table row and start a new one -->
+    <% end %>
+    <td>
+      <%= link_to "#{sheet.row}-#{sheet.column}", new_schedule_reservation_path(movie_id: @movie.id, schedule_id: @schedule_id, sheet_id: sheet.id, date: @date) %>
+    </td>
+  <% end %>
+  </tr> <!-- Close the final row -->
+</table>
