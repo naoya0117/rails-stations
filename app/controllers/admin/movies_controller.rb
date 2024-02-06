@@ -5,6 +5,10 @@ class Admin::MoviesController < ApplicationController
         @movies = Movie.all
     end
 
+    def show
+        @schedules = @movie.schedules
+    end
+
     def new
         @movie = Movie.new
     end
