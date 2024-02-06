@@ -1,0 +1,8 @@
+<% @schedules.each do |schedule| %>
+  <h2><%= schedule.movie.name %></h2>
+  <ul>
+    <li>開始:<%= schedule.start_time %></li>
+    <li>終了:<%= schedule.end_time %></li>
+    <%= link_to 'detail', admin_schedule_path(schedule) %>
+  </ul>
+<% end %>

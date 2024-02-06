@@ -1,0 +1,15 @@
+<h2><%= @movie.name %></h2>
+<table>
+<tr>
+  <th>Start Time</th>
+  <th>End Time</th>
+</tr>
+<% @schedules.each do |schedule| %>
+  <tr>
+    <td><%= schedule.start_time %></td>
+    <td><%= schedule.end_time %></td>
+    <td><%= link_to '詳細', admin_schedule_path(schedule) %></td>
+  </tr>
+<% end %>
+</table>
+<%= link_to 'schedules', admin_schedules_path %>
