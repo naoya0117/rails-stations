@@ -1,0 +1,21 @@
+<%= form_with model: [:admin, reservation] do |form| %>
+  <div class="field">
+    <%= form.label :sheet_id, "座席" %>
+    <%= form.select :sheet_id, Sheet.all.collect { |s| ["#{s.row}-#{s.column}", s.id]} %>
+  </div>
+  <div class="field">
+    <%= form.label :schedule_id, "日時" %>
+    <%= form.select :schedule_id, Schedule.all.collect{ |s| ["#{s.movie.name}-#{s.start_time}=#{s.end_time}", s.id]} %>
+  </div>
+  <div class="field">
+    <%= form.label :name, "予約者氏名" %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :email, "予約者メールアドレス" %>
+    <%= form.email_field :email %>
+  </div>
+  <div class="actions">
+    <%= form.submit%>
+  </div>
+<% end %>
