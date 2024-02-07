@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: %i[ show edit update destroy reservation ]
+  before_action :set_movie, only: %i[ show edit update destroy reservation]
 
   # GET /movies or /movies.json
   def index

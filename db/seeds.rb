@@ -21,3 +21,7 @@ Sheet.create(id: 12, column: 2, row: "c")
 Sheet.create(id: 13, column: 3, row: "c")
 Sheet.create(id: 14, column: 4, row: "c")
 Sheet.create(id: 15, column: 5, row: "c")
+
+Screen.create(id: 1, name: "スクリーン1")
+Screen.create(id: 2, name: "スクリーン2")
+Screen.create(id: 3, name: "スクリーン3")
