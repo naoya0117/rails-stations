@@ -4,9 +4,9 @@ class ReservationsController < ApplicationController
       flash[:notice] = "日付または、座席が選択されていません"
       redirect_to movies_path
     end
-    @movie = Movie.find(params[:movie_id])
+    @movie = Movie.find_by(params[:movie_id])
     @date = params[:date]
-    @schedule = Schedule.find(params[:schedule_id])
+    @schedule = Schedule.find_by(params[:schedule_id])
     @sheet_id = params[:sheet_id]
     @reservation = Reservation.new
   end
