@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   namespace :admin do
     root to: redirect('/admin/movies')
     resources :movies, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
