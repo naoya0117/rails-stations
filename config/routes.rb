@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :schedules, only: [:new, :show, :create, :edit, :destroy]
     end
     resources :schedules, only: [:index, :show, :update, :destroy]
+    resources :reservations
   end
 
   root to: redirect('/movies')
