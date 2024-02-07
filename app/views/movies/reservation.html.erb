@@ -6,7 +6,7 @@
       <tr> <!-- Close the current table row and start a new one -->
     <% end %>
     <td>
-      <%= link_to "#{sheet.row}-#{sheet.column}", new_schedule_reservation_path(movie_id: @movie.id, schedule_id: @schedule_id, sheet_id: sheet.id, date: @date) %>
+      <%= link_to "#{sheet.row}-#{sheet.column}", new_schedule_reservation_path(schedule_id: @schedule_id, sheet_id: sheet.id, date: @date, movie_id: @movie.id) %>
     </td>
   <% end %>
   </tr> <!-- Close the final row -->
