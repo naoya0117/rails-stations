@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: %i[ show edit update destroy reservation]
+  before_action :set_movie, only: %i[show edit update destroy reservation]
 
   # GET /movies or /movies.json
   def index
@@ -7,14 +7,11 @@ class MoviesController < ApplicationController
     keyword = params[:keyword]
     is_showing = params[:is_showing]
 
-    if keyword.present?
-      @movies = @movies.where("name LIKE ? OR description LIKE ?", "%#{keyword}%", "%#{keyword}%")
-    end
+    @movies = @movies.where('name LIKE ? OR description LIKE ?', "%#{keyword}%", "%#{keyword}%") if keyword.present?
 
-    unless is_showing.blank?
-      @movies = @movies.where(is_showing: is_showing)
-    end
+    return if is_showing.blank?
 
+    @movies = @movies.where(is_showing: is_showing)
   end
 
   # GET /movies/1 or /movies/1.json
@@ -29,8 +26,7 @@ class MoviesController < ApplicationController
   end
 
   # GET /movies/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /movies or /movies.json
   def create
@@ -38,7 +34,7 @@ class MoviesController < ApplicationController
 
     respond_to do |format|
       if @movie.save
-        format.html { redirect_to @movie, notice: "Movie was successfully created." }
+        format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
         format.json { render :show, status: :created, location: @movie }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -51,7 +47,7 @@ class MoviesController < ApplicationController
   def update
     respond_to do |format|
       if @movie.update(movie_params)
-        format.html { redirect_to @movie, notice: "Movie was successfully updated." }
+        format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }
         format.json { render :show, status: :ok, location: @movie }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,7 +60,7 @@ class MoviesController < ApplicationController
   def destroy
     @movie.destroy
     respond_to do |format|
-      format.html { redirect_to movies_url, notice: "Movie was successfully destroyed." }
+      format.html { redirect_to movies_url, notice: 'Movie was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -73,22 +69,20 @@ class MoviesController < ApplicationController
     @date = params[:date]
     @schedule_id = params[:schedule_id]
 
-    unless @date && @schedule_id
-      redirect_to movie_path(@movie),  notice: '日付または、スケジュールが選択されていません'
-    end
+    redirect_to movie_path(@movie), notice: '日付または、スケジュールが選択されていません' unless @date && @schedule_id
 
     @sheets = Sheet.all
-
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_movie
-      @movie = Movie.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def movie_params
-      params.require(:movie).permit(:name, :year, :description, :image_url, :is_showing)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_movie
+    @movie = Movie.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def movie_params
+    params.require(:movie).permit(:name, :year, :description, :image_url, :is_showing)
+  end
 end
