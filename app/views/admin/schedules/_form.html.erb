@@ -1,4 +1,8 @@
 <%= form_with(model: [:admin, schedule], local: true) do |form| %>
+  <%= form.hidden_field :movie_id, value: @movie.id %>
+
+  <%= form.select :screen_id, options_for_select(Screen.all.map { |screen| [screen.name, screen.id] }) %>
+
   <%= form.label :start_time %>
   <%= form.datetime_select :start_time %>
 
